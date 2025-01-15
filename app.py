@@ -1,4 +1,4 @@
-import os
+iimport os
 from flask import Flask, render_template, request, url_for
 import oauth2 as oauth
 import urllib.request
@@ -60,8 +60,9 @@ def start():
     oauth_store[oauth_token] = oauth_token_secret
     starturi=f'{authorize_url}?oauth_token={oauth_token}'
     print(starturi)
-    gresp, gcontent = client.request(starturi,"GET")
-    return gcontent
+    return redirect(startui)
+    #gresp, gcontent = client.request(starturi,"GET")
+    #return gcontent
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
 
 
