@@ -69,7 +69,11 @@ def update_profile(client,name,url,location,description):
     params=urllib.parse.urlencode({
                                 "name":name,"url":url,"location":location,"description":description})
     print(params)
-    resp, content = client.request(update_profile_url, "POST", body=params)
+    furi=update_profile_url+"?"+params
+    print(furi)
+    resp, content = client.request(furi, "POST")
+    print(resp)
+    print(content)
     return
    
 
