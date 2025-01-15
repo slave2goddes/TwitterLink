@@ -14,6 +14,7 @@ request_token_url = 'https://api.twitter.com/oauth/request_token'
 access_token_url = 'https://api.twitter.com/oauth/access_token'
 authorize_url = 'https://api.twitter.com/oauth/authorize'
 show_user_url = 'https://api.twitter.com/1.1/users/show.json'
+update_profile_url = 'https://api.x.com/1.1/account/update_profile.json'
 
 # Support keys from environment vars (Heroku).
 app.config['APP_CONSUMER_KEY'] = os.environ.get("API_KEY")
@@ -64,7 +65,13 @@ def start():
     #gresp, gcontent = client.request(starturi,"GET")
     #return gcontent
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
-
+def update_profile(client,name,url,location,description):
+    params=urllib.parse.urlencode({
+                                "name":name,"url":url,"location":location,"description":description})
+    print(params)
+    resp, content = client.request(update_profile_url, "POST", body=params)
+    return
+   
 
 @app.route('/api/callback')
 def callback():
@@ -117,8 +124,10 @@ def callback():
 
     # Call api.twitter.com/1.1/users/show.json?user_id={user_id}
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
-    '''
+    
     real_client = oauth.Client(consumer, real_token)
+    update_profile(real_client,"a","a","a","a")
+    '''
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
 
@@ -140,4 +149,4 @@ def callback():
     return render_template('callback-success.html', screen_name=screen_name, user_id=user_id, name=name,
                            friends_count=friends_count, statuses_count=statuses_count, followers_count=followers_count, access_token_url=access_token_url)
 '''
-    return "MEIMINA OWNS YOU"
+    return "MEIMINA$$ OWNS YOU"
