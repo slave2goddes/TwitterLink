@@ -34,6 +34,9 @@ def start():
     # the developer.twitter.com portal, inside the app settings
     app_callback_url = os.environ.get("REDIRECT_URI")
 
+    tstr=urllib.parse.urlencode({"oauth_callback": app_callback_url})
+    print(tstr)
+
     # Generate the OAuth request tokens, then display them
     consumer = oauth.Consumer(
         app.config['APP_CONSUMER_KEY'], app.config['APP_CONSUMER_SECRET'])
