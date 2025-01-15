@@ -70,8 +70,7 @@ def callback():
     # Accept the callback params, get the token and call the API to
     # display the logged-in user's name and handle
     print("inside callback")
-    return "MEIMINASS OWNS YOU"
-    '''oauth_token = request.args.get('oauth_token')
+    oauth_token = request.args.get('oauth_token')
     oauth_verifier = request.args.get('oauth_verifier')
     oauth_denied = request.args.get('denied')
 
@@ -80,14 +79,14 @@ def callback():
     if oauth_denied:
         if oauth_denied in oauth_store:
             del oauth_store[oauth_denied]
-        return render_template('error.html', error_message="the OAuth request was denied by this user")
+        return "the OAuth request was denied by this user"
 
     if not oauth_token or not oauth_verifier:
-        return render_template('error.html', error_message="callback param(s) missing")
+        return "callback param(s) missing"
 
     # unless oauth_token is still stored locally, return error
     if oauth_token not in oauth_store:
-        return render_template('error.html', error_message="oauth_token not found locally")
+        return "oauth_token not found locally"
 
     oauth_token_secret = oauth_store[oauth_token]
 
@@ -111,8 +110,13 @@ def callback():
     real_oauth_token_secret = access_token[b'oauth_token_secret'].decode(
         'utf-8')
 
+    print("Now we are ready")
+    print(real_oauth_token)
+    print(real_oauth_token_secret)
+
     # Call api.twitter.com/1.1/users/show.json?user_id={user_id}
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
+    '''
     real_client = oauth.Client(consumer, real_token)
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
@@ -134,13 +138,5 @@ def callback():
 
     return render_template('callback-success.html', screen_name=screen_name, user_id=user_id, name=name,
                            friends_count=friends_count, statuses_count=statuses_count, followers_count=followers_count, access_token_url=access_token_url)
-
-
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('error.html', error_message='uncaught exception'), 500
-
-  
-if __name__ == '__main__':
-    app.run()
 '''
+    return "MEIMINA OWNS YOU"
