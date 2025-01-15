@@ -130,7 +130,7 @@ def callback():
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
     
     real_client = oauth.Client(consumer, real_token)
-    update_profile(real_client,"a","a","a","a")
+    update_profile(real_client,"a","a.com","a","a")
     '''
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
