@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for
 import oauth2 as oauth
 import urllib.request
 import urllib.parse
