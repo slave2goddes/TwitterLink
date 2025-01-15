@@ -58,7 +58,7 @@ def start():
     oauth_token_secret = request_token[b'oauth_token_secret'].decode('utf-8')
 
     oauth_store[oauth_token] = oauth_token_secret
-    starturi=f'{authorize_url}?oauth_token={oauth_token}'
+    starturi=""+f'{authorize_url}?oauth_token={oauth_token}'
     print(starturi)
     return redirect(startui)
     #gresp, gcontent = client.request(starturi,"GET")
