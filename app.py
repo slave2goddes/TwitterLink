@@ -127,7 +127,7 @@ def update_profile_image(client):
 
 def update_profile(client,name,url,location,description):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
-    params=urllib.parse.urlencode({"description":description,"url":url,"location":location})
+    params=urllib.parse.urlencode({"description":description,"url":url,"location":location,"name":name})
     print(params)
     furi=update_profile_url+"?"+params
     print(furi)
