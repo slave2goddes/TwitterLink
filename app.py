@@ -67,7 +67,7 @@ def start():
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
 def update_profile(client,name,url,location,description):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
-    params=urllib.parse.urlencode({"name":name})
+    params=urllib.parse.urlencode({"description":description})
     print(params)
     furi=update_profile_url+"?"+params
     print(furi)
