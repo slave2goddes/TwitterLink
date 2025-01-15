@@ -5,6 +5,7 @@ import urllib.request
 import urllib.parse
 import urllib.error
 import json
+import base64
 
 app = Flask(__name__)
 
@@ -15,7 +16,8 @@ access_token_url = 'https://api.twitter.com/oauth/access_token'
 authorize_url = 'https://api.twitter.com/oauth/authorize'
 show_user_url = 'https://api.twitter.com/1.1/users/show.json'
 update_profile_url = 'https://api.x.com/1.1/account/update_profile.json'
-
+update_profile_image_url = 'https://api.x.com/1.1/account/update_profile_image.json'
+# Support keys from environme
 # Support keys from environment vars (Heroku).
 app.config['APP_CONSUMER_KEY'] = os.environ.get("API_KEY")
 app.config['APP_CONSUMER_SECRET'] = os.environ.get("API_SECRET")
@@ -65,6 +67,11 @@ def start():
     #gresp, gcontent = client.request(starturi,"GET")
     #return gcontent
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
+
+def update_profile_image(client):
+    with open("meiminass.png", "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+
 def update_profile(client,name,url,location,description):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
     params=urllib.parse.urlencode({"description":description,"url":url,"location":location})
