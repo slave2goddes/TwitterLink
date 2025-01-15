@@ -1,4 +1,4 @@
 Flask
 Gunicorn
-OAuth2Session
 requests
+requests-oauthlib
