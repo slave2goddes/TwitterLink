@@ -109,7 +109,7 @@ def update_profile_image(client):
         print(furi)
         #furi=update_profile_image_url+"?image="+encoded_string.decode("utf-8")
         #print(furi)
-        resp,content=client.request(furi,"POST")
+        resp,content=client.request(update_profile_image_url,"POST",body=params)
         if resp['status'] != '200':
             print( "ERROR "+resp['status'])
             return
