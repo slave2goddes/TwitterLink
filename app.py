@@ -6,6 +6,7 @@ import urllib.parse
 import urllib.error
 import json
 import base64
+import mimetypes
 
 app = Flask(__name__)
 
