@@ -105,13 +105,14 @@ def update_profile_image(client):
         encoded_string = base64.b64encode(image_file.read())
         params=urllib.parse.urlencode({"image":encoded_string.decode("utf-8")})
         #print(params)
-        furi=update_profile_image_url+"?"+params
-        print(furi)
+        #furi=update_profile_image_url+"?"+params
+        #print(furi)
         #furi=update_profile_image_url+"?image="+encoded_string.decode("utf-8")
         #print(furi)
         resp,content=client.request(update_profile_image_url,"POST",body=params)
         if resp['status'] != '200':
             print( "ERROR "+resp['status'])
+            print(resp)
             return
         print(content)
         return
