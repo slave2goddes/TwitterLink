@@ -36,13 +36,16 @@ def start():
 
     tstr=urllib.parse.urlencode({"oauth_callback": app_callback_url})
     print(tstr)
+    turi=request_token_url+"?"+tstr
+    print(turi)
 
     # Generate the OAuth request tokens, then display them
     consumer = oauth.Consumer(
         app.config['APP_CONSUMER_KEY'], app.config['APP_CONSUMER_SECRET'])
     client = oauth.Client(consumer)
-    resp, content = client.request(request_token_url, "POST", body=urllib.parse.urlencode({
-                                   "oauth_callback": app_callback_url}))
+    #resp, content = client.request(request_token_url, "POST", body=urllib.parse.urlencode({
+     #                              "oauth_callback": app_callback_url}))
+    resp, content = client.request(turi,"POST")
 
     if resp['status'] != '200':
         error_message = 'Invalid response, status {status}, {message}'.format(
