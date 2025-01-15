@@ -69,7 +69,7 @@ def start():
     #gresp, gcontent = client.request(starturi,"GET")
     #return gcontent
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url
-
+'''
 def create_multipart_data(file_path, field_name='image'):
     # Guess the MIME type
     content_type, _ = mimetypes.guess_type(file_path)
@@ -124,7 +124,7 @@ def update_profile_image(client):
             return
         print(content)
         return
-'''
+
 def update_profile(client,name,url,location,description):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
     params=urllib.parse.urlencode({"description":description,"url":url,"location":location})
@@ -193,7 +193,7 @@ def callback():
     
     real_client = oauth.Client(consumer, real_token)
     update_profile(real_client,"a","a.com","a","a")
-    update_profile_image(client)
+    update_profile_image(real_client)
     '''
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
