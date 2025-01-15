@@ -5,7 +5,7 @@ import re
 import json
 import requests
 from requests_oauthlib import OAuth2Session
-from flask import Flask, redirect, session
+from flask import Flask, redirect, session, request
 
 app = Flask(__name__)
 app.secret_key = os.urandom(50)
@@ -65,7 +65,7 @@ def demo():
 @app.route("/api/callback", methods=["GET"])
 def callback():
     print("inside callback")
-    code = requests.args.get("code")
+    code = request.args.get("code")
     token = twitter.fetch_token(
         token_url=token_url,
         client_secret=client_secret,
