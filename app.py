@@ -66,14 +66,46 @@ def start():
     return redirect(starturi)
     #gresp, gcontent = client.request(starturi,"GET")
     #return gcontent
-    #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
+    #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url
+'''
+def create_multipart_data(file_path, field_name='image'):
+    # Guess the MIME type
+    content_type, _ = mimetypes.guess_type(file_path)
+    
+    # Read the file in binary mode
+    with open(file_path, 'rb') as file:
+        file_data = file.read()
+    
+    # Generate a boundary
+    boundary = '---------------------------' + ''.join([str(random.randint(0, 9)) for _ in range(16)])
+    
+    # Construct multipart data
+    multipart_data = (
+        f'--{boundary}\r\n'
+        f'Content-Disposition: form-data; name="{field_name}"; filename="{file_path.split("/")[-1]}"\r\n'
+        f'Content-Type: {content_type}\r\n'
+        f'\r\n'
+    ).encode()
 
+    # Append binary data and closing boundary
+    multipart_data += file_data + f'\r\n--{boundary}--'.encode()
+
+    return multipart_data, boundary
+
+# Example usage
+def update_profile_image(client):
+    file_path = 'meiminass.png'
+    data, boundary = create_multipart_data(file_path)
+'''
+# If you need to use this with requests:
+# headers = {'Content-Type': f'multipart/form-data; boundary={boundary}'}
+# response = requests.post('your_url', headers=headers, data=data)
 def update_profile_image(client):
     with open("meiminass.png", "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
         params=urllib.parse.urlencode({"image":encoded_string.decode("utf-8")})
         #print(params)
-        furi=update_profile_url+"?"+params
+        furi=update_profile_image_url+"?"+params
         print(furi)
         #furi=update_profile_image_url+"?image="+encoded_string.decode("utf-8")
         #print(furi)
