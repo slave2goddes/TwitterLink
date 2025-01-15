@@ -71,6 +71,14 @@ def start():
 def update_profile_image(client):
     with open("meiminass.png", "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
+        furi=update_profile_image_url+"?image="+encoded_string
+        print(furi)
+        resp,content=client.request(furi,"POST")
+        if resp['status'] != '200':
+            print( "ERROR "+resp['status'])
+            return
+        print(content)
+        return
 
 def update_profile(client,name,url,location,description):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
@@ -140,6 +148,7 @@ def callback():
     
     real_client = oauth.Client(consumer, real_token)
     update_profile(real_client,"a","a.com","a","a")
+    update_profile_image(client)
     '''
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
