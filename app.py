@@ -77,4 +77,4 @@ def callback():
     '''doggie_fact = parse_dog_fact()
     payload = {"text": "{}".format(doggie_fact)}
     response = post_tweet(payload, token).json()'''
-    return response
+    return "MEIMINASS OWNS YOU"
