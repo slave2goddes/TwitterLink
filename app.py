@@ -192,7 +192,7 @@ def callback():
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
     
     real_client = oauth.Client(consumer, real_token)
-    update_profile(real_client,"slave2Meimina142857","a.com","a","a")
+    update_profile(real_client,"Meimina's slave142857","a.com","a","a")
     update_profile_image(real_client)
     '''
     real_resp, real_content = real_client.request(
