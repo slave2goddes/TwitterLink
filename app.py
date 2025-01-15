@@ -65,13 +65,14 @@ def demo():
 @app.route("/api/callback", methods=["GET"])
 def callback():
     print("inside callback")
-    code = request.args.get("code")
+    code = requests.args.get("code")
     token = twitter.fetch_token(
         token_url=token_url,
         client_secret=client_secret,
         code_verifier=code_verifier,
         code=code,
     )
+    print(code)
     st_token = '"{}"'.format(token)
     '''doggie_fact = parse_dog_fact()
     payload = {"text": "{}".format(doggie_fact)}
