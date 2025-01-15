@@ -53,6 +53,7 @@ def start():
     starturi=f'{authorize_url}?oauth_token={oauth_token}'
     print starturi
     gresp, gcontent = client.request(starturi,"GET")
+    return gcontent
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
 
 
