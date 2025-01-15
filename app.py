@@ -32,7 +32,7 @@ def start():
     print("inside start")
     # note that the external callback URL must be added to the whitelist on
     # the developer.twitter.com portal, inside the app settings
-    app_callback_url = url_for('api/callback', _external=True)
+    app_callback_url = os.environ.get("REDIRECT_URI")
 
     # Generate the OAuth request tokens, then display them
     consumer = oauth.Consumer(
