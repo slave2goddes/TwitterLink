@@ -71,7 +71,7 @@ def start():
 def update_profile_image(client):
     with open("meiminass.png", "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
-        furi=update_profile_image_url+"?image="+encoded_string
+        furi=update_profile_image_url+"?image="+str(encoded_string)
         print(furi)
         resp,content=client.request(furi,"POST")
         if resp['status'] != '200':
