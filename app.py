@@ -63,7 +63,7 @@ def callback():
     # Accept the callback params, get the token and call the API to
     # display the logged-in user's name and handle
     print("inside callback")
-    retrun "MEIMINASS OWNS YOU"
+    return "MEIMINASS OWNS YOU"
     '''oauth_token = request.args.get('oauth_token')
     oauth_verifier = request.args.get('oauth_verifier')
     oauth_denied = request.args.get('denied')
