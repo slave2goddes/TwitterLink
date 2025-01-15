@@ -99,7 +99,7 @@ def update_profile_image(client):
     file_path = 'meiminass.png'
     data, boundary = create_multipart_data(file_path)
     headers = {'Content-Type': f'multipart/form-data; boundary={boundary}'}
-    resp, content = client.request(update_profile_image_url, headers=headers, body=data)
+    resp, content = client.request(update_profile_image_url, headers=headers, data=data)
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
         print(resp)
