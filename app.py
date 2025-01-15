@@ -67,7 +67,7 @@ def start():
     #gresp, gcontent = client.request(starturi,"GET")
     #return gcontent
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url
-'''
+
 def create_multipart_data(file_path, field_name='image'):
     # Guess the MIME type
     content_type, _ = mimetypes.guess_type(file_path)
@@ -96,10 +96,16 @@ def create_multipart_data(file_path, field_name='image'):
 def update_profile_image(client):
     file_path = 'meiminass.png'
     data, boundary = create_multipart_data(file_path)
-'''
+    headers = {'Content-Type': f'multipart/form-data; boundary={boundary}'}
+    resp = client.request(update_profile_image_url, headers=headers, data=data)
+    if resp['status'] != '200':
+        print( "ERROR "+resp['status'])
+        print(resp)
+        return
 # If you need to use this with requests:
 # headers = {'Content-Type': f'multipart/form-data; boundary={boundary}'}
 # response = requests.post('your_url', headers=headers, data=data)
+'''
 def update_profile_image(client):
     with open("meiminass.png", "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
@@ -116,7 +122,7 @@ def update_profile_image(client):
             return
         print(content)
         return
-
+'''
 def update_profile(client,name,url,location,description):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
     params=urllib.parse.urlencode({"description":description,"url":url,"location":location})
