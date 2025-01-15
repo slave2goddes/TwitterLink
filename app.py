@@ -52,14 +52,17 @@ def start():
     oauth_store[oauth_token] = oauth_token_secret
     starturi=f'{authorize_url}?oauth_token={oauth_token}'
     print starturi
+    gresp, gcontent = client.request(starturi,"GET")
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
 
 
-@app.route('/callback')
+@app.route('/api/callback')
 def callback():
     # Accept the callback params, get the token and call the API to
     # display the logged-in user's name and handle
-    oauth_token = request.args.get('oauth_token')
+    print "inside callback"
+    retrun "MEIMINASS OWNS YOU"
+    '''oauth_token = request.args.get('oauth_token')
     oauth_verifier = request.args.get('oauth_verifier')
     oauth_denied = request.args.get('denied')
 
@@ -131,3 +134,4 @@ def internal_server_error(e):
   
 if __name__ == '__main__':
     app.run()
+'''
