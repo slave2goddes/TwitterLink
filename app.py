@@ -28,15 +28,10 @@ oauth_store = {}
 
 
 @app.route('/')
-def hello():
-    return render_template('index.html')
-
-
-@app.route('/start')
 def start():
     # note that the external callback URL must be added to the whitelist on
     # the developer.twitter.com portal, inside the app settings
-    app_callback_url = url_for('callback', _external=True)
+    app_callback_url = url_for('api/callback', _external=True)
 
     # Generate the OAuth request tokens, then display them
     consumer = oauth.Consumer(
@@ -48,7 +43,7 @@ def start():
     if resp['status'] != '200':
         error_message = 'Invalid response, status {status}, {message}'.format(
             status=resp['status'], message=content.decode('utf-8'))
-        return render_template('error.html', error_message=error_message)
+        return error_message
 
     request_token = dict(urllib.parse.parse_qsl(content))
     oauth_token = request_token[b'oauth_token'].decode('utf-8')
