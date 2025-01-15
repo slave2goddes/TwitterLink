@@ -29,6 +29,7 @@ oauth_store = {}
 
 @app.route('/')
 def start():
+    print("inside start")
     # note that the external callback URL must be added to the whitelist on
     # the developer.twitter.com portal, inside the app settings
     app_callback_url = url_for('api/callback', _external=True)
@@ -51,7 +52,7 @@ def start():
 
     oauth_store[oauth_token] = oauth_token_secret
     starturi=f'{authorize_url}?oauth_token={oauth_token}'
-    print starturi
+    print(starturi)
     gresp, gcontent = client.request(starturi,"GET")
     return gcontent
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
@@ -61,7 +62,7 @@ def start():
 def callback():
     # Accept the callback params, get the token and call the API to
     # display the logged-in user's name and handle
-    print "inside callback"
+    print("inside callback")
     retrun "MEIMINASS OWNS YOU"
     '''oauth_token = request.args.get('oauth_token')
     oauth_verifier = request.args.get('oauth_verifier')
