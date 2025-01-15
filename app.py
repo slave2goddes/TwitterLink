@@ -46,6 +46,7 @@ def start():
     #resp, content = client.request(request_token_url, "POST", body=urllib.parse.urlencode({
      #                              "oauth_callback": app_callback_url}))
     resp, content = client.request(turi,"POST")
+    print(content)
 
     if resp['status'] != '200':
         error_message = 'Invalid response, status {status}, {message}'.format(
