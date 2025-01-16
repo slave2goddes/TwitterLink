@@ -31,7 +31,11 @@ app.config['APP_CONSUMER_SECRET'] = os.environ.get("API_SECRET")
 
 oauth_store = {}
 
-
+@app.route('/ping')
+def ping():
+    print("heartbeat")
+    return
+    
 @app.route('/')
 def start():
     print("inside start")
