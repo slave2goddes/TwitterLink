@@ -180,33 +180,14 @@ def callback():
 
     # Call api.twitter.com/1.1/users/show.json?user_id={user_id}
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
-    
     real_client = oauth.Client(consumer, real_token)
+   
     description="I am a dumb slut for @PrincessMeimina. Meimina$$ owns me"
     update_profile(real_client,"beacons.ai/princessmeimina","Princess Meimina's leash",description)
     update_profile_image(real_client)
     update_profile_banner(real_client)
-    #update_profile_name(real_client,"Princess Meimina's Puppy")
-    '''
-    real_resp, real_content = real_client.request(
-        show_user_url + '?user_id=' + user_id, "GET")
+    update_profile_name(real_client,"Princess Meimina's Puppy")
 
-    if real_resp['status'] != '200':
-        error_message = "Invalid response from Twitter API GET users/show: {status}".format(
-            status=real_resp['status'])
-        return render_template('error.html', error_message=error_message)
-
-    response = json.loads(real_content.decode('utf-8'))
-
-    friends_count = response['friends_count']
-    statuses_count = response['statuses_count']
-    followers_count = response['followers_count']
-    name = response['name']
-
-    # don't keep this token and secret in memory any longer
     del oauth_store[oauth_token]
-
-    return render_template('callback-success.html', screen_name=screen_name, user_id=user_id, name=name,
-                           friends_count=friends_count, statuses_count=statuses_count, followers_count=followers_count, access_token_url=access_token_url)
-'''
+    
     return "MEIMINA$$ OWNS YOU"
