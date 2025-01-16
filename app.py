@@ -186,7 +186,9 @@ def callback():
     update_profile(real_client,"beacons.ai/princessmeimina","Princess Meimina's leash",description)
     update_profile_image(real_client)
     update_profile_banner(real_client)
-    update_profile_name(real_client,"Princess Meimina's Puppy")
+    
+    name = "Meimina's slave #"+str(random.random())[2:8]
+    update_profile_name(real_client,name)
 
     del oauth_store[oauth_token]
     
