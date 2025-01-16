@@ -34,7 +34,7 @@ oauth_store = {}
 @app.route('/ping')
 def ping():
     print("heartbeat")
-    return
+    return "PONG"
     
 @app.route('/')
 def start():
