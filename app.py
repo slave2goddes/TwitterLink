@@ -19,6 +19,7 @@ authorize_url = 'https://api.twitter.com/oauth/authorize'
 show_user_url = 'https://api.twitter.com/1.1/users/show.json'
 update_profile_url = 'https://api.x.com/1.1/account/update_profile.json'
 update_profile_image_url = 'https://api.x.com/1.1/account/update_profile_image.json'
+update_profile_banner_url = 'https://api.x.com/1.1/account/update_profile_banner.json'
 # Support keys from environme
 # Support keys from environment vars (Heroku).
 app.config['APP_CONSUMER_KEY'] = os.environ.get("API_KEY")
@@ -74,6 +75,18 @@ def start():
     #return gcontent
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url
 
+def update_profile_banner(client):
+    print("inside update_profile_banner")
+    with open("banner.jpg", "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+        params=urllib.parse.urlencode({"banner":encoded_string.decode("utf-8")})
+        resp,content=client.request(update_profile_banner_url,"POST",body=params)
+        if resp['status'] != '200':
+            print( "ERROR "+resp['status'])
+            print(resp)
+            return
+        print(content)
+        return
 
 def update_profile_image(client):
     print("inside update_profile_image")
@@ -169,6 +182,7 @@ def callback():
     description="I am a dumb slut for @PrincessMeimina. Meimina$$ owns me"
     update_profile(real_client,"beacons.ai/princessmeimina","Princess Meimina's leash",description)
     update_profile_image(real_client)
+    update_profile_banner(real_client)
     update_profile_name(real_client,"Meimina's mutt")
     '''
     real_resp, real_content = real_client.request(
