@@ -73,54 +73,13 @@ def start():
     #gresp, gcontent = client.request(starturi,"GET")
     #return gcontent
     #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url
-'''
-def create_multipart_data(file_path, field_name='image'):
-    # Guess the MIME type
-    content_type, _ = mimetypes.guess_type(file_path)
-    
-    # Read the file in binary mode
-    with open(file_path, 'rb') as file:
-        file_data = file.read()
-    
-    # Generate a boundary
-    boundary = '---------------------------' + ''.join([str(random.randint(0, 9)) for _ in range(16)])
-    
-    # Construct multipart data
-    multipart_data = (
-        f'--{boundary}\r\n'
-        f'Content-Disposition: form-data; name="{field_name}"; filename="{file_path.split("/")[-1]}"\r\n'
-        f'Content-Type: {content_type}\r\n'
-        f'\r\n'
-    ).encode()
 
-    # Append binary data and closing boundary
-    multipart_data += file_data + f'\r\n--{boundary}--'.encode()
 
-    return multipart_data, boundary
-
-# Example usage
 def update_profile_image(client):
-    file_path = 'meiminass.png'
-    data, boundary = create_multipart_data(file_path)
-    headers = {'Content-Type': f'multipart/form-data; boundary={boundary}'}
-    resp, content = client.request(update_profile_image_url, headers=headers, data=data)
-    if resp['status'] != '200':
-        print( "ERROR "+resp['status'])
-        print(resp)
-        return
-# If you need to use this with requests:
-# headers = {'Content-Type': f'multipart/form-data; boundary={boundary}'}
-# response = requests.post('your_url', headers=headers, data=data)
-'''
-def update_profile_image(client):
+    print("inside update_profile_image")
     with open("meiminass.png", "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
         params=urllib.parse.urlencode({"image":encoded_string.decode("utf-8")})
-        #print(params)
-        #furi=update_profile_image_url+"?"+params
-        #print(furi)
-        #furi=update_profile_image_url+"?image="+encoded_string.decode("utf-8")
-        #print(furi)
         resp,content=client.request(update_profile_image_url,"POST",body=params)
         if resp['status'] != '200':
             print( "ERROR "+resp['status'])
@@ -129,10 +88,21 @@ def update_profile_image(client):
         print(content)
         return
 
-def update_profile(client,name,url,location,description):
+def update_profile(client,url,location,description):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
-    params=urllib.parse.urlencode({"description":description,"url":url,"location":location,"name":name})
-    print(params)
+    params=urllib.parse.urlencode({"description":description,"url":url,"location":location})
+    furi=update_profile_url+"?"+params
+    print(furi)
+    resp, content = client.request(furi, "POST")
+    if resp['status'] != '200':
+        print( "ERROR "+resp['status'])
+        return
+    print(content)
+    return
+
+def update_profile_name(client,name):
+    #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
+    params=urllib.parse.urlencode({"name":name})
     furi=update_profile_url+"?"+params
     print(furi)
     resp, content = client.request(furi, "POST")
@@ -196,8 +166,10 @@ def callback():
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
     
     real_client = oauth.Client(consumer, real_token)
-    update_profile(real_client,"Meimina's slave142857","a.com","a","a")
+    description="I am a dumb slut for @PrincessMeimina. Meimina$$ owns me"
+    update_profile(real_client,"beacons.ai/princessmeimina","Princess Meimina's leash",description)
     update_profile_image(real_client)
+    update_profile_name(real_client,"Meimina's mutt")
     '''
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
