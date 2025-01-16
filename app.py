@@ -36,16 +36,14 @@ oauth_store = {}
 def ping():
     print("heartbeat")
     return "PONG"
-    
-@app.route('/')
-def start():
-    print("inside start")
+
+def get_oauth_token():
+    print("inside get_oauth_token")
     # note that the external callback URL must be added to the whitelist on
     # the developer.twitter.com portal, inside the app settings
     app_callback_url = os.environ.get("REDIRECT_URI")
 
     tstr=urllib.parse.urlencode({"oauth_callback": app_callback_url})
-    print(tstr)
     turi=request_token_url+"?"+tstr
     print(turi)
 
@@ -66,8 +64,13 @@ def start():
     request_token = dict(urllib.parse.parse_qsl(content))
     oauth_token = request_token[b'oauth_token'].decode('utf-8')
     oauth_token_secret = request_token[b'oauth_token_secret'].decode('utf-8')
-
     oauth_store[oauth_token] = oauth_token_secret
+    return oauth_token
+    
+@app.route('/')
+def start():
+    print("inside start")
+    oauth_token=get_oauth_token()
     starturi=""+f'{authorize_url}?oauth_token={oauth_token}'
     print(starturi)
     return redirect(starturi)
