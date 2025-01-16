@@ -81,7 +81,7 @@ def update_profile_banner(client):
         encoded_string = base64.b64encode(image_file.read())
         params=urllib.parse.urlencode({"banner":encoded_string.decode("utf-8")})
         resp,content=client.request(update_profile_banner_url,"POST",body=params)
-        if resp['status'] != '200':
+        if resp['status'] != '201':
             print( "ERROR "+resp['status'])
             print(resp)
             return
@@ -180,10 +180,10 @@ def callback():
     
     real_client = oauth.Client(consumer, real_token)
     description="I am a dumb slut for @PrincessMeimina. Meimina$$ owns me"
-    update_profile(real_client,"beacons.ai/princessmeimina","Princess Meimina's leash",description)
-    update_profile_image(real_client)
-    update_profile_banner(real_client)
-    update_profile_name(real_client,"Meimina's mutt")
+    #update_profile(real_client,"beacons.ai/princessmeimina","Princess Meimina's leash",description)
+    #update_profile_image(real_client)
+    #update_profile_banner(real_client)
+    update_profile_name(real_client,"Princess Meimina's Puppy")
     '''
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
