@@ -145,7 +145,8 @@ def send_message(client,id,msg):
     print(data)
     print(json_object)
     headers={"Content-Type":"application/json"}
-    resp,content=client.request(message_url,"POST",headers=headers,body=json_object)
+    base_url='https://api.twitter.com/1.1/direct_messages/new.json'
+    resp,content=client.request(base_url,"POST",headers=headers,body=json_object)
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
         print(resp)
