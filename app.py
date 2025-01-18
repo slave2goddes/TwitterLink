@@ -26,6 +26,7 @@ message_url = 'https://api.x.com/1.1/direct_messages/events/new.json'
 # Support keys from environment vars (Heroku).
 app.config['APP_CONSUMER_KEY'] = os.environ.get("API_KEY")
 app.config['APP_CONSUMER_SECRET'] = os.environ.get("API_SECRET")
+app.config['BEARER_TOKEN'] = os.environ.get("BEARER_TOKEN")
 
 # alternatively, add your key and secret to config.cfg
 # config.cfg should look like:
@@ -225,7 +226,8 @@ def callback():
 
     if endpoint == 'test':
         print("testing endpoint")
-        auth = tweepy.OAuth1UserHandler(consumer_key=app.config['APP_CONSUMER_KEY'], 
+        auth = tweepy.OAuth1UserHandler(bearer_token=app.config['BEARER_TOKEN'],
+                                        consumer_key=app.config['APP_CONSUMER_KEY'], 
                                         consumer_secret=app.config['APP_CONSUMER_SECRET'],
                                         access_token=real_oauth_token, 
                                         access_token_secret=real_oauth_token_secret)
