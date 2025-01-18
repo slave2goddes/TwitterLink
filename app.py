@@ -139,14 +139,16 @@ def update_profile_name(client,name):
 
 def send_message(client,id,msg):
     print("inside send message")
-    data = {'text': msg,'user_id': id}
-    #data = {"event": {"type": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
+    #data = {'text': msg,'user_id': id}
+    data = {"event": {"type": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
     json_object = json.dumps(data).encode('utf8')
     print(data)
     print(json_object)
     headers={"Content-Type":"application/json"}
     base_url='https://api.twitter.com/1.1/direct_messages/new.json'
-    resp,content=client.request(base_url,"POST",headers=headers,body=json_object)
+    final_url=message_url+"?"+str(json_object)
+    print(final_url)
+    resp,content=client.request(final_url,"POST",headers=headers)
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
         print(resp)
