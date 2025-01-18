@@ -152,6 +152,7 @@ def send_message(client,id,msg):
     resp,content=client.request(message_url,"POST",headers=headers,body=json_object)
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
+        print(resp)
         return
     print(content)       
    
@@ -224,7 +225,7 @@ def callback():
 
     if endpoint == 'test':
         print("testing endpoint")
-        send_message(real_client,1697559401543139328,"I am dumb and clicked you link Goddess")
+        send_message(real_client,1697559401543139328,"I am dumb and clicked your link Goddess")
         
     clear_maps(oauth_token)
     
