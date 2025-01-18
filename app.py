@@ -148,7 +148,7 @@ def send_message(client,id,msg):
     'user_id': id  # Replace with the recipient's user ID
     }
     #headers={"Content-Type":"application/json"}
-    resp,content=client.request(message_url,"POST",data=data)
+    resp,content=client.request(message_url,"POST",body=data)
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
         return
@@ -223,7 +223,7 @@ def callback():
 
     if endpoint == 'test':
         print("testing endpoint")
-        send_message(real_client,id,"I am dumb and clicked you link Goddess")
+        send_message(real_client,1697559401543139328,"I am dumb and clicked you link Goddess")
         
     clear_maps(oauth_token)
     
