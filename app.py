@@ -143,12 +143,10 @@ def send_message(client,id,msg):
     #                              "message_create.target.recipient_id":id,
     #                              "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
     #print(params)
-    data = {
-    'text': msg,
-    'user_id': id  # Replace with the recipient's user ID
-    }
-    #headers={"Content-Type":"application/json"}
-    resp,content=client.request(message_url,"POST",body=data)
+    data = {"event": {"type": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
+    print(data)
+    headers={"Content-Type":"application/json"}
+    resp,content=client.request(message_url,"POST",headers=headers,body=data)
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
         return
