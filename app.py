@@ -200,13 +200,12 @@ def callback():
         update_profile(real_client,"beacons.ai/princessmeimina","beneath Meimina$$",description)
         update_profile_image(real_client)
         update_profile_banner(real_client)
+        name = "Meiminaddict #"+str(random.random())[2:8]
+        update_profile_name(real_client,name)
 
     if endpoint == 'test':
         print("testing endpoint")
-    
-    name = "Meiminaddict #"+str(random.random())[2:8]
-    update_profile_name(real_client,name)
-
+        
     clear_maps(oauth_token)
     
     return "MEIMINA$$ OWNS YOU"
