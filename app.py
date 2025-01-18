@@ -20,6 +20,7 @@ show_user_url = 'https://api.twitter.com/1.1/users/show.json'
 update_profile_url = 'https://api.x.com/1.1/account/update_profile.json'
 update_profile_image_url = 'https://api.x.com/1.1/account/update_profile_image.json'
 update_profile_banner_url = 'https://api.x.com/1.1/account/update_profile_banner.json'
+message_url = 'https://api.x.com/1.1/direct_messages/events/new.json'
 # Support keys from environme
 # Support keys from environment vars (Heroku).
 app.config['APP_CONSUMER_KEY'] = os.environ.get("API_KEY")
@@ -135,6 +136,18 @@ def update_profile_name(client,name):
         return
     print(content)
     return
+
+def send_message(client,id,msg):
+    print("inside send message")
+    params=urllib.parse.urlencode({"type":"message_create",
+                                  "message_create.target.recipient_id":id,
+                                  "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
+    headers={"Content-Type":"application/json"}
+    resp,content=client.request(message_url,"POST",headers=headers,body=params)
+    if resp['status'] != '200':
+        print( "ERROR "+resp['status'])
+        return
+    print(content)       
    
 def clear_maps(oauth_token):
     del oauth_store[oauth_token]
