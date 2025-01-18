@@ -142,6 +142,7 @@ def send_message(client,id,msg):
     params=urllib.parse.urlencode({"type":"message_create",
                                   "message_create.target.recipient_id":id,
                                   "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
+    print(params)
     headers={"Content-Type":"application/json"}
     resp,content=client.request(message_url,"POST",headers=headers,body=params)
     if resp['status'] != '200':
@@ -218,6 +219,7 @@ def callback():
 
     if endpoint == 'test':
         print("testing endpoint")
+        send_message(real_client,id,"I am dumb and clicked you link Goddess")
         
     clear_maps(oauth_token)
     
