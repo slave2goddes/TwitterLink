@@ -8,6 +8,7 @@ import json
 import base64
 import mimetypes
 import random
+import tweepy
 
 app = Flask(__name__)
 
@@ -224,7 +225,12 @@ def callback():
 
     if endpoint == 'test':
         print("testing endpoint")
-        send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
+        auth = tweepy.OAuthHandler(app.config['APP_CONSUMER_KEY'], app.config['APP_CONSUMER_SECRET'])
+        auth.set_access_token(real_oauth_token, real_oauth_token_secret)
+        api = tweepy.API(auth)
+        recipient_id = "1697559401543139328"
+        api.send_direct_message(recipient_id, "Hey")
+        #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         
     clear_maps(oauth_token)
     
