@@ -91,7 +91,7 @@ def test():
     
 def update_profile_banner(client):
     print("inside update_profile_banner")
-    with open("banner.jpg", "rb") as image_file:
+    with open("banner.png", "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
         params=urllib.parse.urlencode({"banner":encoded_string.decode("utf-8")})
         resp,content=client.request(update_profile_banner_url,"POST",body=params)
