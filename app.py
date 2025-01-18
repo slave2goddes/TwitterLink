@@ -143,7 +143,7 @@ def send_message(client,id,msg):
     #                              "message_create.target.recipient_id":id,
     #                              "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
     #print(params)
-    data = {"event": {"type": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
+    data = {"event": {"typ": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
     json_object = json.dumps(data)
     json_object = json_object.encode('utf8')
     print(data)
