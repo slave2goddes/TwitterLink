@@ -144,7 +144,7 @@ def send_message(client,id,msg):
     #                              "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
     #print(params)
     data = {"event": {"type": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
-    json_object = json.dumps(data, indent = 4)
+    json_object = json.dumps(data.encode("utf-8"))
     print(data)
     print(json_object)
     headers={"Content-Type":"application/json"}
