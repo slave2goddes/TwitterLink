@@ -143,7 +143,7 @@ def send_message(client,id,msg):
     #                              "message_create.target.recipient_id":id,
     #                              "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
     #print(params)
-    data = {"event": {"typ": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
+    data = {"event": {"type": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
     json_object = json.dumps(data)
     json_object = json_object.encode('utf8')
     print(data)
@@ -225,7 +225,7 @@ def callback():
 
     if endpoint == 'test':
         print("testing endpoint")
-        send_message(real_client,1697559401543139328,"I am dumb and clicked your link Goddess")
+        send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         
     clear_maps(oauth_token)
     
