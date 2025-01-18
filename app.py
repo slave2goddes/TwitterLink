@@ -139,13 +139,9 @@ def update_profile_name(client,name):
 
 def send_message(client,id,msg):
     print("inside send message")
-    #params=urllib.parse.urlencode({"type":"message_create",
-    #                              "message_create.target.recipient_id":id,
-    #                              "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
-    #print(params)
-    data = {"event": {"type": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
-    json_object = json.dumps(data)
-    json_object = json_object.encode('utf8')
+    data = {'text': msg,'user_id': id}
+    #data = {"event": {"type": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
+    json_object = json.dumps(data).encode('utf8')
     print(data)
     print(json_object)
     headers={"Content-Type":"application/json"}
