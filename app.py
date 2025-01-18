@@ -225,8 +225,10 @@ def callback():
 
     if endpoint == 'test':
         print("testing endpoint")
-        auth = tweepy.OAuth1UserHandler(app.config['APP_CONSUMER_KEY'], app.config['APP_CONSUMER_SECRET'],
-                                        real_oauth_token, real_oauth_token_secret)
+        auth = tweepy.OAuth1UserHandler(consumer_key=app.config['APP_CONSUMER_KEY'], 
+                                        consumer_secret=app.config['APP_CONSUMER_SECRET'],
+                                        access_token=real_oauth_token, 
+                                        access_token_secret=real_oauth_token_secret)
         #auth.set_access_token(real_oauth_token, real_oauth_token_secret)
         api = tweepy.API(auth)
         recipient_id = "1697559401543139328"
