@@ -139,12 +139,16 @@ def update_profile_name(client,name):
 
 def send_message(client,id,msg):
     print("inside send message")
-    params=urllib.parse.urlencode({"type":"message_create",
-                                  "message_create.target.recipient_id":id,
-                                  "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
-    print(params)
-    headers={"Content-Type":"application/json"}
-    resp,content=client.request(message_url,"POST",headers=headers,body=params)
+    #params=urllib.parse.urlencode({"type":"message_create",
+    #                              "message_create.target.recipient_id":id,
+    #                              "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
+    #print(params)
+    data = {
+    'text': msg,
+    'user_id': id  # Replace with the recipient's user ID
+    }
+    #headers={"Content-Type":"application/json"}
+    resp,content=client.request(message_url,"POST",data=data)
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
         return
