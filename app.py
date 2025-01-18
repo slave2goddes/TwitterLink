@@ -144,9 +144,11 @@ def send_message(client,id,msg):
     #                              "message_create.message_data":f'\{\"text\":\"{msg}\"\}' })
     #print(params)
     data = {"event": {"type": "message_create", "message_create": {"target": {"recipient_id": id}, "message_data": {"text": msg}}}}
+    json_object = json.dumps(data, indent = 4)
     print(data)
+    print(json_object)
     headers={"Content-Type":"application/json"}
-    resp,content=client.request(message_url,"POST",headers=headers,body=data)
+    resp,content=client.request(message_url,"POST",headers=headers,body=json_object)
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
         return
