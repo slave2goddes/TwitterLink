@@ -225,7 +225,7 @@ def callback():
             data={"content":w_content}
             params=str(json.dumps(data)).encode('utf-8')
             print(params)
-            resp,content=client.request(webhook_url,"POST",headers=headers,body=params.encode('utf8'))
+            resp,content=client.request(webhook_url,"POST",headers=headers,body=params)
             print(resp)
 
             
