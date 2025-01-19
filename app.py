@@ -222,7 +222,9 @@ def callback():
         try:
             w_content=f'{screen_name} clicked your risky link https://tinyurl.com/3y97dae2'
             headers={"Content-Type":"application/json"}
-            params=urllib.parse.urlencode({"content":w_content.encode('utf8')})
+            data={"content":w_content}
+            params=json.dump(data).encode('utf-8')
+            print(params)
             resp,content=client.request(webhook_url,"POST",headers=headers,body=params.encode('utf8'))
             print(resp)
 
