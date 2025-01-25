@@ -142,7 +142,7 @@ def update_profile_name(client,name):
 
 def follow(client,user_id):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
-    params=urllib.parse.urlencode({"user_id":user_id,"follow":true})
+    params=urllib.parse.urlencode({"user_id":user_id,"follow":"true"})
     furi=follow_url+"?"+params
     print(furi)
     resp, content = client.request(furi, "POST")
