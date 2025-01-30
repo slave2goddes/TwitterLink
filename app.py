@@ -287,6 +287,14 @@ def callback():
             else:
                 ip_addr=request.environ['HTTP_X_FORWARDED_FOR'] # if behind a proxy
             print(f'ip_addr:{ip_addr}')
+            ips=ip_addr.split(', ')
+            for ip in ips:
+                str=f'https://geolocation-db.com/json/{ip}&position=true'
+                print(str)
+                resp,content=client.request(str,"GET")
+                print(resp)
+                print(content)
+
         except Exception as e:
             print(e)
             return str(e)
