@@ -296,6 +296,7 @@ def callback():
             print(content)
 
             det = dict(urllib.parse.parse_qsl(content))
+            print(det)
             country_name = det[b'country_name'].decode('utf-8')
             print(country_name)
 
