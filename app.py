@@ -155,7 +155,7 @@ def follow(client,screen_name):
     print(content)
     return
 
-def notify_discord(webhook_url,w_content):
+def notify_discord(client,webhook_url,w_content):
         headers={"Content-Type":"application/json"}
         data={"content":w_content}
         params=str(json.dumps(data)).encode('utf-8')
@@ -311,7 +311,7 @@ def callback():
             c_name = det['country_name']
             print(c_name)
 
-            notify_discord(webhook_url,f'a{screen_name} from {c_name} clicked the mommymei link')
+            notify_discord(client,webhook_url,f'@{screen_name} from {c_name} clicked the mommymei link')
 
 
         except Exception as e:
