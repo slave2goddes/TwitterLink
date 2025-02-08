@@ -287,7 +287,7 @@ def callback():
             else:
                 ip_addr=request.environ['HTTP_X_FORWARDED_FOR'] # if behind a proxy
             print(f'ip_addr:{ip_addr}')
-            ips=ip_addr.split(', ')[0]
+            ip=ip_addr.split(', ')[0]
             
             url=f'https://geolocation-db.com/json/{ip}&position=true'
             print(url)
