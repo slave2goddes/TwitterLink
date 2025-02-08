@@ -295,9 +295,10 @@ def callback():
             print(resp)
             print(content)
 
-            det = dict(urllib.parse.parse_qsl(content))
+            #det = dict(urllib.parse.parse_qsl(content))
+            det=json.loads(content.decode('utf-8'))
             print(det)
-            country_name = det[b'country_name'].decode('utf-8')
+            country_name = det[country_name].decode('utf-8')
             print(country_name)
 
 
