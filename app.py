@@ -309,9 +309,9 @@ def callback():
             #det = dict(urllib.parse.parse_qsl(content))
             det=json.loads(content.decode('utf-8'))
             print(det)
-            c_name = det['country']
-            st_name = det['regionNme']
-            ct_name = det['city']
+            c_name = det.get('country')
+            st_name = det.get('regionNme')
+            ct_name = det.get('city')
             print(f'{ct_name},{st_name},{c_name}')
 
             notify_discord(client,webhook_url,f'@{screen_name} from {ct_name},{st_name},{c_name} clicked the mommymeimi link')
